@@ -1,0 +1,29 @@
+@import "../../../../styles/fonts";
+@import "../../../../styles/variables";
+
+.logoRow {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: $borderRadius;
+  color: $text;
+  background-color: transparent;
+  box-shadow: inset 0 0 10rem 10rem $yellow, 0 0 5rem $yellow;
+}
+
+
+.title {
+  @extend .headerFont;
+  font-size: $titleSize;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.wrap {
+  margin-top: 20vh;
+}

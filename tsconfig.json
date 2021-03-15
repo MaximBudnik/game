@@ -22,5 +22,11 @@
   },
   "include": [
     "src"
+  ],
+  "references": [
+    {
+      "path": "../game-server/types",
+      "prepend": true,
+    }
   ]
 }

@@ -1,0 +1,24 @@
+@import "../../styles/fonts";
+@import "../../styles/variables";
+
+.wrap {
+  min-width: $minWidth;
+  width: 40%;
+  margin: auto;
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+}
+
+.content{
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.noRooms{
+  margin-top: 2rem;
+  text-align: center;
+}
+
+
