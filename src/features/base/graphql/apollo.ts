@@ -1,13 +1,14 @@
 import {ApolloClient, HttpLink, InMemoryCache, split} from '@apollo/client';
 import {getMainDefinition} from '@apollo/client/utilities';
 import {WebSocketLink} from '@apollo/client/link/ws';
+import {appConfig} from "../../../config/appConfig";
 
 const httpLink = new HttpLink({
-    uri: 'http://localhost:4000/graphql'
+    uri: appConfig.apollo.httpUri
 });
 
 const wsLink = new WebSocketLink({
-    uri: 'ws://localhost:4000/subscriptions',
+    uri:  appConfig.apollo.wsUri,
     options: {
         reconnect: true
     }

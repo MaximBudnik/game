@@ -25,6 +25,7 @@
 .join {
   @extend .baseButton;
   background: $baseDarker;
+  width: 100%;
 
   &:hover {
     background: $baseDarkerOpacity;

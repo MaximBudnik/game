@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./RoomListItem.module.scss";
 
 type propsType = {
-    openCreateRoomModal: ()=>void
+    openCreateRoomModal: () => void
 }
 
 const FirstRoomListItem: React.FC<propsType> = (props) => {

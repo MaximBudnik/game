@@ -3,6 +3,10 @@ import BaseModal from "../../../base/components/BaseModal/BaseModal";
 import styles from './CreateRoomModal.module.scss'
 import {useForm} from "react-hook-form";
 import {RoomFormType} from "../../../../../../game-server/types/src/RoomTypes";
+import {useMutation} from "@apollo/client";
+import {CREATE_ROOM, CREATE_ROOM_VARS} from "../../gql";
+import {useHistory} from "react-router-dom";
+import {routes} from "../../../../constants/routes";
 
 
 type propsType = {
@@ -14,8 +18,15 @@ type inputs = RoomFormType
 
 const CreateRoomModal: React.FC<propsType> = (props) => {
     const {register, handleSubmit, watch, errors} = useForm<inputs>();
-    const onSubmit = (data: inputs) => console.log(data);
-    console.log(errors)
+    const [createRoom] = useMutation<CREATE_ROOM, CREATE_ROOM_VARS>(CREATE_ROOM);
+    const history = useHistory()
+    const onSubmit = async (data: inputs) => {
+        const res = await createRoom({variables: data})
+        console.log(res)
+        if (res.data && res.data.createRoom) {
+            history.push(routes.goToLobby(res.data.createRoom.id))
+        }
+    };
     return (
         <BaseModal
             isModalOpen={props.isModalOpen}

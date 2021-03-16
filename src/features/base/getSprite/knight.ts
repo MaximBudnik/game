@@ -10,6 +10,7 @@ export const KnightSpriteScale = {
     y: 4
 }
 
+// type knightSpritesRange = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
 export const getKnightSprite = (frame: number): IRect => {
     return {
         x: 9 * 16 - 16 + frame * 16,

@@ -23,8 +23,8 @@ const LogoAndTitleLayer: React.FC = (props) => {
     return (
         <Layer imageSmoothingEnabled={false}>
             <Image
-                x={16*10}
-                rotation={45-counter*2}
+                x={16 * 10}
+                rotation={45 - counter * 2}
                 crop={{
                     x: 21 * 16 - 16,
                     y: 6 * 16 - 16,
@@ -33,14 +33,14 @@ const LogoAndTitleLayer: React.FC = (props) => {
                 }}
                 scale={{
                     x: 8,
-                    y:8
+                    y: 8
                 }}
                 image={image}
                 width={16}
                 height={32}
             />
             <Image
-                y={16*2}
+                y={16 * 2}
                 crop={getKnightSprite(counter)}
                 scale={{
                     x: 8,

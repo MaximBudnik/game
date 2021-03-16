@@ -1,10 +1,8 @@
 import React from "react";
+import {Link} from "react-router-dom";
 import {RoomType} from "../../../../types";
 import styles from "./RoomListItem.module.scss";
-
-type mapStateToProps = {}
-
-type mapDispatchToProps = {}
+import {routes} from "../../../../constants/routes";
 
 type propsType = RoomType;
 
@@ -20,9 +18,11 @@ const RoomListItem: React.FC<propsType> = (props) => {
             <div>
                 {props.players.length}
             </div>
-            <button className={styles.join}>
-                Join
-            </button>
+            <Link to={routes.goToLobby(props.id)}>
+                <button className={styles.join}>
+                    Join
+                </button>
+            </Link>
         </div>
     )
 }

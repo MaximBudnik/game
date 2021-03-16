@@ -1,30 +1,30 @@
-import React, {useState} from "react";
-// @ts-ignore
+import React, {useEffect, useState} from "react";
 import styles from "./RoomScreen.module.scss";
-import {useQuery} from "@apollo/client";
+import {useLazyQuery} from "@apollo/client";
 import {GET_ALL_ROOMS} from "./gql";
 import RoomListItem from "./components/RoomListItem/RoomListItem";
 import FirstRoomListItem from "./components/RoomListItem/FirstRoomListItem";
 import LogoAndTitle from "./components/LogoAndTitle/LogoAndTitle";
 import CreateRoomModal from "./components/CreateRoomModal/CreateRoomModal";
 import Preloader from "../base/components/Preloader/Preloader";
+import NoRooms from "./components/NoRooms/NoRooms";
+import RefreshButton from "./components/RefreshButton/RefreshButton";
 
-type mapStateToProps = {}
 
-type mapDispatchToProps = {}
 
-type propsType = mapStateToProps & mapDispatchToProps;
 
-const RoomScreen: React.FC<propsType> = (props) => {
-    const {data, loading, error} = useQuery<GET_ALL_ROOMS>(GET_ALL_ROOMS)
+const RoomScreen: React.FC = () => {
+    const [getAllRooms, {data, loading, error}] = useLazyQuery<GET_ALL_ROOMS>(GET_ALL_ROOMS, {fetchPolicy: "no-cache"})
     const [isCreateRoomModalOpen, setIsCreateRoomModalOpen] = useState<boolean>(false)
-    console.log(data, loading, error)
+    useEffect(() => {
+        if (!data) getAllRooms()
+    }, [data, getAllRooms])
     return (
         <>
             <div className={styles.wrap}>
                 <div className={styles.content}>
                     <LogoAndTitle/>
-                    <FirstRoomListItem openCreateRoomModal={()=>setIsCreateRoomModalOpen(true)}/>
+                    <FirstRoomListItem openCreateRoomModal={() => setIsCreateRoomModalOpen(true)}/>
                     {
                         loading ?
                             <div>
@@ -33,11 +33,11 @@ const RoomScreen: React.FC<propsType> = (props) => {
                             <div>
                                 {
                                     data?.rooms.length === 0 ?
-                                        <div className={styles.noRooms}>
-                                            It seems there are no rooms available. You can create your own room.
-                                        </div> :
-                                        data?.rooms.map((e, i) => <RoomListItem {...e} key={i}/>)
+                                        <NoRooms/> :
+                                        data?.rooms.map((e, i) =>
+                                            <RoomListItem {...e} key={i}/>)
                                 }
+                                <RefreshButton refetchRooms={() => getAllRooms()}/>
                             </div>
                     }
                 </div>

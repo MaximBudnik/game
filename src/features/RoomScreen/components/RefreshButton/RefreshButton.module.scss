@@ -1,0 +1,27 @@
+@import "../../../../styles/common";
+@import "../../../../styles/variables";
+
+.refreshButton {
+  margin-top: 1rem;
+  color: $darkerAccent;
+  padding: .5rem;
+
+  > div {
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    > div {
+      margin-left: .25rem;
+    }
+  }
+
+  &:hover {
+    border-bottom: 1px solid $darkerAccent;
+  }
+}
+
+.wrap {
+  display: flex;
+  justify-content: center;
+}
