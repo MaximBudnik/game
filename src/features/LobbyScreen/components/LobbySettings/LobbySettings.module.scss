@@ -1,0 +1,16 @@
+@import "../../../../styles/variables";
+
+
+.item {
+  background: $baseDark;
+  border-radius: $borderRadius;
+  display: flex;
+}
+
+.wrap {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fit, 1fr);
+  grid-gap: 1rem;
+}

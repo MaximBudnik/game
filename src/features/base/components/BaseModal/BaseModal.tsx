@@ -1,26 +1,20 @@
 import React from "react";
 import styles from "./BaseModal.module.scss";
 import {IoClose} from "react-icons/io5";
-import Modal from 'react-modal';
+import Modal, {Styles} from 'react-modal';
 
 type propsType = {
     isModalOpen: boolean
     closeModal: () => void
     title: string
-    width: string
-    height: string
+    style: Styles
 }
 Modal.setAppElement("#root")
 
 const BaseModal: React.FC<propsType> = (props) => {
     return (
         <Modal
-            style={{
-                content: {
-                    width: props.width,
-                    height: props.height
-                }
-            }}
+            style={props.style}
             isOpen={props.isModalOpen}
             onRequestClose={props.closeModal}
             className={styles.modal}

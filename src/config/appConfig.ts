@@ -1,6 +1,9 @@
 export const appConfig = {
-    apollo:{
-        httpUri:'http://localhost:4000/graphql',
-        wsUri:'ws://localhost:4000/subscriptions'
+    apollo: {
+        httpUri: process.env.REACT_APP_APOLLO_HTTP_URI,
+        wsUri: process.env.REACT_APP_APOLLO_WS_URI
+    },
+    notifications: {
+        notificationTimeout: 5000
     }
 }

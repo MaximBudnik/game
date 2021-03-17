@@ -32,8 +32,12 @@ const CreateRoomModal: React.FC<propsType> = (props) => {
             isModalOpen={props.isModalOpen}
             closeModal={props.closeModal}
             title={'Create room'}
-            width={'30%'}
-            height={'auto'}
+            style={{
+                content: {
+                    width: '40%',
+                    minWidth: '768px'
+                }
+            }}
         >
             <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="name">Room name:</label>

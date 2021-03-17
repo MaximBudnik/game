@@ -1,0 +1,35 @@
+
+.wrap {
+  padding: 2rem;
+  display: grid;
+  grid-template-areas:
+    "players character settings settings"
+    "players character settings settings"
+    "players chat      empty1     empty2"
+    "players chat      empty3     start";
+  grid-template-rows: 6fr 2fr 3fr 1fr;
+  grid-template-columns: 1fr 3fr 1.5fr 1.5fr;
+  grid-gap: 2rem;
+  height: 100vh;
+}
+
+.players {
+  grid-area: players;
+}
+
+.chat {
+  grid-area: chat;
+}
+
+.settings {
+  grid-area: settings;
+}
+
+.start{
+  grid-area: start;
+}
+
+.character{
+  grid-area: character;
+}
+

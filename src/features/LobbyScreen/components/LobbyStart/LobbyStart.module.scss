@@ -1,0 +1,9 @@
+@import "../../../../styles/variables";
+
+
+.wrap{
+  border-radius: $borderRadius;
+  background: $accent;
+  display: flex;
+  height: 100%;
+}

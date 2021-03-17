@@ -5,11 +5,13 @@ import RoomScreen from "./features/RoomScreen/RoomScreen";
 import {routes} from "./constants/routes";
 import LobbyAndGameScreen from "./features/LobbyAndGameScreen/LobbyAndGameScreen";
 import UserIdentity from "./features/base/UserIdentity/UserIdentity";
+import NotificationsService from "./features/base/notifications/NotificationsService";
 
 const App = () => {
         return (
             <>
                 <UserIdentity/>
+                <NotificationsService/>
                 <div className="App">
                     <Switch>
                         <Route path={routes.home} component={RoomScreen}/>

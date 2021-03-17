@@ -1,0 +1,54 @@
+@import "../../../styles/variables";
+
+.wrap {
+  bottom: 2rem;
+  left: 2rem;
+  position: absolute;
+}
+
+.notification {
+  padding: .25rem;
+  z-index: 9;
+  background: $text;
+  color: $black;
+  width: 20rem;
+  height: 5rem;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: .25rem;
+}
+
+.default {
+  @extend .notification;
+}
+
+.danger {
+  @extend .notification;
+  background: $danger;
+  color: $white;
+}
+
+.info {
+  @extend .notification;
+}
+
+.warning {
+  @extend .notification;
+}
+
+.animation-enter {
+  opacity: 0;
+}
+.animation-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+.animation-exit {
+  opacity: 1;
+}
+.animation-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms;
+}

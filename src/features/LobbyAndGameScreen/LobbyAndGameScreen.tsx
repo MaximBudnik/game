@@ -1,20 +1,16 @@
 import React from "react";
-import styles from "./LobbyScreen.module.scss";
-import {observer} from "mobx-react-lite";
-import RoomStore from "./RoomStore";
 import SubscribeAndAddPlayer from "./components/SubscribeAndAddPlayer/SubscribeAndAddPlayer";
+import LobbyScreen from "../LobbyScreen/LobbyScreen";
 
-const LobbyAndGameScreen: React.FC = observer((props) => {
+const LobbyAndGameScreen: React.FC = (props) => {
 
     return (
         <>
             <SubscribeAndAddPlayer/>
-            <div className={styles.wrap}>
-                {JSON.stringify(RoomStore.room)}
-            </div>
+            <LobbyScreen/>
         </>
 
     )
-})
+}
 
 export default LobbyAndGameScreen;
