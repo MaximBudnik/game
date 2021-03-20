@@ -1,5 +1,5 @@
 import {gql} from "@apollo/client";
-import {PlayerType, RoomType} from "../../types";
+import {ChatMessage, PlayerType, RoomType} from "../../types";
 
 export const ROOM_SUBSCRIPTION = gql`
     subscription($id: Int!){
@@ -49,6 +49,7 @@ export const DELETE_PLAYER = gql`
         }
     }
 `
+
 
 export type DELETE_PLAYER = {
     deletePlayer: RoomType

@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {Image, Layer} from "react-konva";
-import {getKnightSprite, KnightSpriteSize} from "../../../base/getSprite/knight";
+import {getRedKnightSprite, KnightSpriteSize} from "../../../base/getSprite/getSprites";
 import useImage from "use-image";
-import tileset1 from "../../../../resources/sprites/tileset1.png";
+import _tileset1 from "../../../../resources/sprites/tileset1.png";
+import {appConfig} from "../../../../config/appConfig";
 
 
 const LogoAndTitleLayer: React.FC = (props) => {
-    const [image] = useImage(tileset1);
-
+    const [tileset1] = useImage(_tileset1);
     const [counter, setCounter] = useState(0);
     useEffect(() => {
         const timeout = setTimeout(function () {
@@ -15,7 +15,7 @@ const LogoAndTitleLayer: React.FC = (props) => {
             if (counter === 3) {
                 setCounter(0)
             }
-        }, 100)
+        }, appConfig.game.frameDelay)
         return () => {
             clearTimeout(timeout)
         }
@@ -35,18 +35,18 @@ const LogoAndTitleLayer: React.FC = (props) => {
                     x: 8,
                     y: 8
                 }}
-                image={image}
+                image={tileset1}
                 width={16}
                 height={32}
             />
             <Image
                 y={16 * 2}
-                crop={getKnightSprite(counter)}
+                crop={getRedKnightSprite(counter)}
                 scale={{
                     x: 8,
                     y: 8
                 }}
-                image={image}
+                image={tileset1}
                 {...KnightSpriteSize}
             />
         </Layer>

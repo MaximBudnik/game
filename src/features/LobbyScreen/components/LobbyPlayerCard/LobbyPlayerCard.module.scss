@@ -1,6 +1,37 @@
 @import "../../../../styles/variables";
+@import "../../../../styles/fonts";
 
 .wrap {
   background: $accent;
   border-radius: $borderRadius;
+  position: relative;
 }
+
+.name {
+  position: absolute;
+  margin-left: .25rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  height: 100%
+}
+
+.canvasContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.effectsColumn {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4,1fr);
+  grid-gap: .5rem;
+  padding: .5rem 0;
+  div{
+    width: 3rem;
+    background: $baseDark;
+  }
+}
+

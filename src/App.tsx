@@ -5,7 +5,8 @@ import RoomScreen from "./features/RoomScreen/RoomScreen";
 import {routes} from "./constants/routes";
 import LobbyAndGameScreen from "./features/LobbyAndGameScreen/LobbyAndGameScreen";
 import UserIdentity from "./features/base/UserIdentity/UserIdentity";
-import NotificationsService from "./features/base/notifications/NotificationsService";
+import NotificationsService from "./features/base/NotificationsService/NotificationsService";
+import ResourceLoader from "./features/base/ResourceLoader/ResourceLoader";
 
 const App = () => {
         return (

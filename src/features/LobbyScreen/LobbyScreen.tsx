@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./LobbyScreen.module.scss";
 import {observer} from "mobx-react-lite";
-import LobbyChat from "./components/LobbyChat/LobbyChat";
+import LobbyChat from "../Chat/LobbyChat/LobbyChat";
 import LobbySettings from "./components/LobbySettings/LobbySettings";
 import LobbyPlayers from "./components/LobbyPlayers/LobbyPlayers";
 import LobbyTitleWrap from "./components/LobbyTitle/LobbyTitleWrap";
@@ -18,7 +18,8 @@ const LobbyScreen: React.FC<propsType> = observer((props) => {
     return (
         <div className={styles.wrap}>
             <div className={styles.players}>
-                <LobbyTitleWrap title={'Players'} component={<LobbyPlayers/>}/>
+                {/*<LobbyTitleWrap title={'Players'} component={<LobbyPlayers/>}/>*/}
+                <LobbyPlayers/>
             </div>
             <div className={styles.settings}>
                 {/*<LobbyTitle title={'Settings'}/>*/}
@@ -26,7 +27,7 @@ const LobbyScreen: React.FC<propsType> = observer((props) => {
 
             </div>
             <div className={styles.chat}>
-                <LobbyTitleWrap title={'Lobby chat'} component={<LobbyChat/>}/>
+                <LobbyChat/>
             </div>
             <div className={styles.start}>
                 <LobbyStart/>

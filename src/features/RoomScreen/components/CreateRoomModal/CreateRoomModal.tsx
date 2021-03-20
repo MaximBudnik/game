@@ -17,12 +17,11 @@ type propsType = {
 type inputs = RoomFormType
 
 const CreateRoomModal: React.FC<propsType> = (props) => {
-    const {register, handleSubmit, watch, errors} = useForm<inputs>();
+    const {register, handleSubmit, errors} = useForm<inputs>();
     const [createRoom] = useMutation<CREATE_ROOM, CREATE_ROOM_VARS>(CREATE_ROOM);
     const history = useHistory()
     const onSubmit = async (data: inputs) => {
         const res = await createRoom({variables: data})
-        console.log(res)
         if (res.data && res.data.createRoom) {
             history.push(routes.goToLobby(res.data.createRoom.id))
         }

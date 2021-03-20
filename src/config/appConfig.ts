@@ -5,5 +5,8 @@ export const appConfig = {
     },
     notifications: {
         notificationTimeout: 5000
+    },
+    game:{
+        frameDelay: 100
     }
 }

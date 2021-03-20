@@ -16,4 +16,13 @@
     color: $accent;
     border: 1px solid $accent;
   }
+  *{
+    transition: 0s;
+  }
+}
+
+.baseInput{
+  border: solid 1px transparent;
+  background: $baseDarker;
+  padding: .25rem;
 }
