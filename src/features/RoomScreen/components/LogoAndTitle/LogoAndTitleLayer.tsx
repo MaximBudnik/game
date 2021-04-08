@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Image, Layer} from "react-konva";
-import {getRedKnightSprite, KnightSpriteSize} from "../../../base/getSprite/getSprites";
+import {getRedKnightSprite, KnightSpriteSize} from "../../../base/getSprite/getCharacterSprites";
 import useImage from "use-image";
 import _tileset1 from "../../../../resources/sprites/tileset1.png";
 import {appConfig} from "../../../../config/appConfig";

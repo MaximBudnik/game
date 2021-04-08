@@ -18,7 +18,6 @@ const LobbyPlayerCard: React.FC<propsType> = ({player}) => {
         window.innerHeight / 900
     );
 
-    console.log(width, height)
     return (
         <div className={styles.wrap}>
             <div className={styles.name}>

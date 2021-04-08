@@ -6,9 +6,11 @@ export const ROOM_SUBSCRIPTION = gql`
         onRoomUpdate(id:$id){
             id
             name
+            gameStatus
             players{
                 id
                 name
+                character
             }
         }
     }
@@ -20,10 +22,13 @@ export type ROOM_SUBSCRIPTION = {
 export const ADD_PLAYER = gql`
     mutation($roomId: Int!, $player: PlayerInput!){
         addPlayer(player:$player, roomId:$roomId){
+            id
             name
+            gameStatus
             players{
                 id
                 name
+                character
             }
         }
     }
@@ -41,10 +46,13 @@ export type ADD_PLAYER_VARS = {
 export const DELETE_PLAYER = gql`
     mutation($roomId: Int!, $playerId: Int!){
         deletePlayer(playerId:$playerId, roomId:$roomId){
+            id
             name
+            gameStatus
             players{
                 id
                 name
+                character
             }
         }
     }

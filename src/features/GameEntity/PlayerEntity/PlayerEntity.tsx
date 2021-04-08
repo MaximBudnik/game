@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {Group, Image} from "react-konva";
-import {getRedKnightSprite} from "../../base/getSprite/getSprites";
+import {
+    getBlueDragonSprite,
+    getBoySprite,
+    getGirlSprite, getGreenDragonSprite,
+    getOrangeKnightSprite,
+    getRedKnightSprite,
+    getSpriteF
+} from "../../base/getSprite/getCharacterSprites";
 import useImage from "use-image";
 import _tileset1 from "../../../resources/sprites/tileset1.png";
 import {CharacterType} from "../../../types";
@@ -15,20 +22,29 @@ type propsType = {
     y: number
 };
 
-const getFunctionForSpriteCrop = (character: CharacterType): (frame: number) => IRect => {
+const getFunctionForSpriteCrop = (character: CharacterType): getSpriteF => {
     switch (character) {
+        case 'girl':
+            return getGirlSprite
+        case 'boy':
+            return getBoySprite
         case 'redKnight':
-        default:
             return getRedKnightSprite
+        case 'orangeKnight':
+            return getOrangeKnightSprite
+        case 'blueDragon':
+            return getBlueDragonSprite
+        case 'greenDragon':
+            return getGreenDragonSprite
     }
 }
 
 const getNumberOrFramesPerAnimation = (animation: 'idle' | 'walking' | 'attacked'): number => {
     switch (animation) {
         case "idle":
-            return 4
+            return 3
         case "walking":
-            return 4
+            return 5
         case "attacked":
             return 1
     }
@@ -38,8 +54,8 @@ const getNumberOrFramesPerAnimation = (animation: 'idle' | 'walking' | 'attacked
 const PlayerEntity: React.FC<propsType> = (props) => {
     const [tileset1] = useImage(_tileset1);
     const [animationFrame, setAnimationFrame] = useState(0);
-
     const cropSprite = getFunctionForSpriteCrop(props.character)
+
     useEffect(() => {
         const timeout = setTimeout(function () {
             setAnimationFrame(animationFrame + 1)
@@ -51,7 +67,6 @@ const PlayerEntity: React.FC<propsType> = (props) => {
             clearTimeout(timeout)
         }
     }, [animationFrame, setAnimationFrame, props.animation])
-
 
     return (
         <Group x={props.x} y={props.y} scale={spriteConfig.scale}>

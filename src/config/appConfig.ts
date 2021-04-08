@@ -6,7 +6,14 @@ export const appConfig = {
     notifications: {
         notificationTimeout: 5000
     },
-    game:{
+    playerName: {
+        defaultName: '%DEFAULT%',
+        namesArray: ['Desiric', 'Viden', 'Ephrais', 'Spene', 'Firrol', 'Astram'
+            , 'Oswyn', 'Sheyric', 'Veric', 'Nyer', 'Namior', 'Xandyr', 'Kondor', 'Romaldo',
+            'Valery', 'Alada', 'Kaari', 'Raelle', 'Raia', 'Dray', 'Xara', 'Lyka', 'Erikia',
+            'Halline',]
+    },
+    game: {
         frameDelay: 100
     }
 }

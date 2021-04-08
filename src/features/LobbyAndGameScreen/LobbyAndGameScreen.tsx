@@ -1,18 +1,24 @@
 import React from "react";
-import SubscribeAndAddPlayer from "./components/SubscribeAndAddPlayer/SubscribeAndAddPlayer";
+import SubscribeToRoomAndAddPlayer from "./components/SubscribeAndAddPlayer/SubscribeToRoomAndAddPlayer";
 import LobbyScreen from "../LobbyScreen/LobbyScreen";
 import RoomStore from "./RoomStore";
-import {useParams} from "react-router-dom";
+import {Route, Switch, useParams} from "react-router-dom";
 import SubscribeToLobbyChat from "../Chat/SubscribeToLobbyChat";
+import {routes} from "../../constants/routes";
+import GameScreen from "../GameScreen/GameScreen";
 
-const LobbyAndGameScreen: React.FC = (props) => {
+const LobbyAndGameScreen: React.FC = () => {
     const params = useParams<{ id: string }>()
     RoomStore.updateRoomId(+params.id)
+
     return (
         <>
-            <SubscribeAndAddPlayer/>
+            <SubscribeToRoomAndAddPlayer/>
             <SubscribeToLobbyChat/>
-            <LobbyScreen/>
+            <Switch>
+                <Route path={routes.lobby} component={LobbyScreen}/>
+                <Route path={routes.game} component={GameScreen}/>
+            </Switch>
         </>
 
     )

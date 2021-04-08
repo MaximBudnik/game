@@ -1,8 +1,9 @@
 import {makeAutoObservable} from "mobx";
+import {appConfig} from "../../../config/appConfig";
 
 class UserIdentityStore {
     id: number = 999999;
-    name: string = 'Default name';
+    name: string = appConfig.playerName.defaultName;
 
     constructor() {
         makeAutoObservable(this);

@@ -6,13 +6,26 @@ import {ADD_PLAYER, ADD_PLAYER_VARS, DELETE_PLAYER, DELETE_PLAYER_VARS, ROOM_SUB
 import UserIdentityStore from "../../../base/UserIdentity/UserIdentityStore";
 import {observer} from "mobx-react-lite";
 import {showErrorNotification} from "../../../base/NotificationsService/functions";
-import {RoomSubscriptionInput} from "../../../../types";
+import {CharacterType, RoomSubscriptionInput} from "../../../../types";
+import {randomFromArray} from "../../../base/functions/randomFromArray";
+import {appConfig} from "../../../../config/appConfig";
 
 
-const SubscribeAndAddPlayer: React.FC = observer((props) => {
-    const history = useHistory()
+const randomizeCharacter = (): CharacterType => {
+    const characters: Array<CharacterType> = ['girl', 'boy', 'redKnight', 'orangeKnight', 'blueDragon', 'greenDragon']
+    return randomFromArray(characters)
+}
+const randomizeName = (): string => {
+    return randomFromArray(appConfig.playerName.namesArray)
+}
+
+const SubscribeToRoomAndAddPlayer: React.FC = observer((props) => {
     const [addPlayer] = useMutation<ADD_PLAYER, ADD_PLAYER_VARS>(ADD_PLAYER)
     const [_deletePlayer] = useMutation<DELETE_PLAYER, DELETE_PLAYER_VARS>(DELETE_PLAYER)
+
+    if (UserIdentityStore.name === appConfig.playerName.defaultName) {
+        UserIdentityStore.setName(randomizeName())
+    }
 
     const onUnload = useCallback(
         () => {
@@ -39,7 +52,7 @@ const SubscribeAndAddPlayer: React.FC = observer((props) => {
                     player: {
                         id: UserIdentityStore.id,
                         name: UserIdentityStore.name,
-                        character: 'redKnight'
+                        character: randomizeCharacter()
                     },
                     roomId: RoomStore.roomId
                 }
@@ -61,12 +74,6 @@ const SubscribeAndAddPlayer: React.FC = observer((props) => {
 
 
     return null
-    // <ComponentWillUnmount componentWillUnmount={
-    //     () => {
-    //         RoomStore.setPlayerWasAdded(false)
-    //         onUnload()
-    //     }
-    // }/>
 })
 
-export default SubscribeAndAddPlayer;
+export default SubscribeToRoomAndAddPlayer;

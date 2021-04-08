@@ -9,7 +9,7 @@ import {observer} from "mobx-react-lite";
 type propsType = {};
 
 const SubscribeToLobbyChat: React.FC<propsType> = observer((props) => {
-    const data = useSubscription<LOBBY_CHAT_SUBSCRIPTION, LobbyChatSubscriptionInput>(LOBBY_CHAT_SUBSCRIPTION,
+    useSubscription<LOBBY_CHAT_SUBSCRIPTION, LobbyChatSubscriptionInput>(LOBBY_CHAT_SUBSCRIPTION,
         {
             variables: {id: RoomStore.roomId},
             onSubscriptionData: (data) => {

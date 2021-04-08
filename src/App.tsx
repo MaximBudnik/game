@@ -6,7 +6,6 @@ import {routes} from "./constants/routes";
 import LobbyAndGameScreen from "./features/LobbyAndGameScreen/LobbyAndGameScreen";
 import UserIdentity from "./features/base/UserIdentity/UserIdentity";
 import NotificationsService from "./features/base/NotificationsService/NotificationsService";
-import ResourceLoader from "./features/base/ResourceLoader/ResourceLoader";
 
 const App = () => {
         return (
@@ -16,7 +15,7 @@ const App = () => {
                 <div className="App">
                     <Switch>
                         <Route path={routes.home} component={RoomScreen}/>
-                        <Route path={routes.lobby} component={LobbyAndGameScreen}/>
+                        <Route path={routes.room} component={LobbyAndGameScreen}/>
                         <Redirect to={routes.home}/>
                     </Switch>
                 </div>
