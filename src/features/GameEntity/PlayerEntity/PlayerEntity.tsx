@@ -3,21 +3,22 @@ import {Group, Image} from "react-konva";
 import {
     getBlueDragonSprite,
     getBoySprite,
-    getGirlSprite, getGreenDragonSprite,
+    getGirlSprite,
+    getGreenDragonSprite,
     getOrangeKnightSprite,
     getRedKnightSprite,
     getSpriteF
 } from "../../base/getSprite/getCharacterSprites";
 import useImage from "use-image";
 import _tileset1 from "../../../resources/sprites/tileset1.png";
-import {CharacterType} from "../../../types";
+import {AnimationDirectionType, AnimationType, CharacterType} from "../../../types";
 import {appConfig} from "../../../config/appConfig";
-import {IRect} from "konva/types/types";
-import {spriteConfig} from "../../../config/spriteConfig";
+import {canvasConfig} from "../../../config/canvasConfig";
 
 type propsType = {
     character: CharacterType
-    animation: 'idle' | 'walking' | 'attacked'
+    animation: AnimationType
+    animationDirection: AnimationDirectionType
     x: number
     y: number
 };
@@ -39,14 +40,16 @@ const getFunctionForSpriteCrop = (character: CharacterType): getSpriteF => {
     }
 }
 
-const getNumberOrFramesPerAnimation = (animation: 'idle' | 'walking' | 'attacked'): number => {
+const getStartFrameAndNumberOfFramesForAnimation = (animation: AnimationType): [number, number] => {
     switch (animation) {
         case "idle":
-            return 3
+            return [0, 4]
         case "walking":
-            return 5
+            return [4, 4]
         case "attacked":
-            return 1
+            return [8, 2]
+        default:
+            return [0, 4]
     }
 }
 
@@ -57,10 +60,13 @@ const PlayerEntity: React.FC<propsType> = (props) => {
     const cropSprite = getFunctionForSpriteCrop(props.character)
 
     useEffect(() => {
-        const timeout = setTimeout(function () {
-            setAnimationFrame(animationFrame + 1)
-            if (animationFrame === getNumberOrFramesPerAnimation(props.animation)) {
-                setAnimationFrame(0)
+        const timeout = setTimeout(() => {
+            const [startAnimationFrame, numberOfFrames] = getStartFrameAndNumberOfFramesForAnimation(props.animation)
+
+            if (animationFrame >= numberOfFrames + startAnimationFrame - 1) {
+                setAnimationFrame(startAnimationFrame)
+            } else {
+                setAnimationFrame(animationFrame + 1)
             }
         }, appConfig.game.frameDelay)
         return () => {
@@ -68,14 +74,23 @@ const PlayerEntity: React.FC<propsType> = (props) => {
         }
     }, [animationFrame, setAnimationFrame, props.animation])
 
+    const scaleX = canvasConfig.scaleX * (props.animationDirection === "left" ? 1 : -1)
+    const offsetX = props.animationDirection === "left" ? -canvasConfig.characterSpriteSize.height/2 : 0
+
+
+    console.log(props.animationDirection)
+    console.log(scaleX)
+
+
     return (
-        <Group x={props.x} y={props.y} scale={spriteConfig.scale}>
+        <Group x={props.x} y={props.y} offsetX={offsetX} scaleX={scaleX} scaleY={canvasConfig.scaleY}>
             {/*Character*/}
             <Image
+                scaleX={-1}
                 crop={cropSprite(animationFrame)}
                 image={tileset1}
-                height={spriteConfig.characterSpriteSize.height}
-                width={spriteConfig.characterSpriteSize.width}
+                height={canvasConfig.characterSpriteSize.height}
+                width={canvasConfig.characterSpriteSize.width}
             />
             {/*Weapon*/}
 

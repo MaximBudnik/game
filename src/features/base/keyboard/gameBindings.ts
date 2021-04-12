@@ -1,33 +1,28 @@
 import {KeyboardBindingsCallback} from "../hooks/useRegisterKeydown";
 import {keyboardConfig} from "../../../config/keyboardConfig";
-import {throttle} from "throttle-debounce";
 import {movePlayer} from "../playerApi/playerApi";
 
 const {MOVE_RIGHT, MOVE_UP, MOVE_DOWN, MOVE_LEFT} = keyboardConfig
 
-
-const t = <T = () => void>(f: T) => throttle(50, f)
-
-const _movePlayer = t(movePlayer)
-
 export const getGameBindings = (roomId: number, userId: number): KeyboardBindingsCallback => {
-    return (event) => {
+    return (keySet) => {
 
-        console.log(event)
+        let playerMoveDirection = {x: 0, y: 0}
 
-        const key = event.key
-
-        if (key === MOVE_UP) {
-            movePlayer(roomId, userId, {x: 0, y: -5})
+        if (keySet.has(MOVE_UP)) {
+            playerMoveDirection.y += -1
         }
-        if (key === MOVE_LEFT) {
-            movePlayer(roomId, userId, {x: -5, y: 0})
+        if (keySet.has(MOVE_LEFT)) {
+            playerMoveDirection.x += -1
         }
-        if (key === MOVE_RIGHT) {
-            movePlayer(roomId, userId, {x: 5, y: 0})
+        if (keySet.has(MOVE_RIGHT)) {
+            playerMoveDirection.x += 1
         }
-        if (key === MOVE_DOWN) {
-            movePlayer(roomId, userId, {x: 0, y: 5})
+        if (keySet.has(MOVE_DOWN)) {
+            playerMoveDirection.y += 1
+        }
+        if (playerMoveDirection.x !== 0 || playerMoveDirection.y !== 0) {
+            movePlayer(roomId, userId, playerMoveDirection)
         }
     }
 }

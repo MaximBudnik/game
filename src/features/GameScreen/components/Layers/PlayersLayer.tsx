@@ -13,8 +13,12 @@ const PlayersLayer: React.FC = observer(() => {
                 if (GameStore.game) {
                     const playerEntity = GameStore.game.playerEntities.find(e => e.id === player.id)
                     if (playerEntity) {
-                        return <PlayerEntity character={player.character} animation={'idle'} x={playerEntity.position.x}
-                                             y={playerEntity.position.y} key={player.id}/>
+                        return <PlayerEntity animation={playerEntity.animation}
+                                             animationDirection={playerEntity.animationDirection}
+                                             character={player.character}
+                                             x={playerEntity.position.x}
+                                             y={playerEntity.position.y}
+                                             key={player.id}/>
                     }
                 }
             })}

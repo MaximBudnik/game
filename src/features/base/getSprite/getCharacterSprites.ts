@@ -1,5 +1,5 @@
 import {IRect} from "konva/types/types";
-import {spriteConfig} from "../../../config/spriteConfig";
+import {canvasConfig} from "../../../config/canvasConfig";
 
 export const KnightSpriteSize = {
     width: 16,
@@ -11,12 +11,10 @@ export const KnightSpriteScale = {
     y: 4
 }
 
-// type knightSpritesRange = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
-
 export type getSpriteF = (frame: number) => IRect
 
-const width = spriteConfig.characterSpriteSize.width
-const height = spriteConfig.characterSpriteSize.height
+const width = canvasConfig.characterSpriteSize.width
+const height = canvasConfig.characterSpriteSize.height
 
 const buildGetCharacterSpriteFunction = (x: number, y: number, frame: number): IRect => {
     return {

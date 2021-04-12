@@ -7,7 +7,7 @@ import RoomStore from "../../LobbyAndGameScreen/RoomStore";
 
 
 const SubscribeToGame: React.FC = observer((props) => {
-    useSubscription<GAME_SUBSCRIPTION, GAME_SUBSCRIPTION_VARS>(GAME_SUBSCRIPTION, {
+    const {error} = useSubscription<GAME_SUBSCRIPTION, GAME_SUBSCRIPTION_VARS>(GAME_SUBSCRIPTION, {
         variables: {id: RoomStore.roomId},
         onSubscriptionData: (data) => {
             if (data.subscriptionData.data) {
@@ -15,7 +15,7 @@ const SubscribeToGame: React.FC = observer((props) => {
             }
         }
     })
-
+    console.log(error)
     return null
 })
 

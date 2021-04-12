@@ -14,6 +14,8 @@ export const appConfig = {
             'Halline',]
     },
     game: {
-        frameDelay: 100
+        frameDelay: 100,
+        playerApiThrottle: 50,
+        keyboardCheckIntervalDelay: 10
     }
 }

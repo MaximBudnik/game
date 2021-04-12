@@ -6,10 +6,6 @@ export const MOVE_PLAYER_MUTATION = gql`
         movePlayer(direction:$direction, roomId:$roomId, playerId:$playerId){
             playerEntities{
                 id
-                position{
-                    x
-                    y
-                }
             }
         }
     }
